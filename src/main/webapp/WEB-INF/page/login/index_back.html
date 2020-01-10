@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <#include "/common/head.html"/>
+<body>
+<div id="grid" style="height: 100%"></div>
+<div></div>
+</body>
+<script>
+    $(function () {
+        var height = document.documentElement.clientHeight - 20;
+        $("#grid").height(height);
+        $("#grid").kendoGrid({
+            columns: [
+                {field: "id"},
+                {field: "username"},
+                {field: "password"}
+            ], pageable: {
+                pageSize: 20,
+                refresh: true,
+                pageSizes: true
+            },
+            sortable: {
+                mode: "multiple", allowUnsort: true
+            },
+            dataSource: {
+                schema: {
+                    total: "total",
+                    data: "data",
+                    groups: "data",
+                    aggregates: "aggregates",
+                    type: "json",
+                    errors: "errors"
+                },
+                serverPaging: true,
+                serverFiltering: true,
+                serverSorting: true,
+                pageSize: 20,
+                page: 1,
+                transport: {
+                    read: {
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json",
+                        url: "/login/list"
+                    }, parameterMap: function (e) {
+                        return JSON.stringify(e);
+                    }
+                }
+            },
+            filterable: {
+                mode: "row,menu",
+                messages: messages,
+                operators: {
+                    string: operators
+                },
+                extra: true
+            }
+        });
+    })
+</script>
+</html>
