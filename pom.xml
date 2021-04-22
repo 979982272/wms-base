@@ -9,7 +9,7 @@
     <url>http://maven.apache.org</url>
     <properties>
         <org.springframework.version>4.3.7.RELEASE</org.springframework.version>
-        <org.apache.shiro.version>1.2.2</org.apache.shiro.version>
+        <org.apache.shiro.version>1.7.1</org.apache.shiro.version>
         <new.sf.cglib>2.2.2</new.sf.cglib>
     </properties>
     <dependencies>
